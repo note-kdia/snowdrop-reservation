@@ -1,6 +1,11 @@
 # snowdrop-reservation
 100人規模のライブイベントの予約・入場処理
 
+# Folders
+### reception
+Django project.
+### reception/read_qr
+App for read/parse QR code
 
 # 要件
 ## システム全体
