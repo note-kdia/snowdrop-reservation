@@ -3,7 +3,7 @@
 
 # Folders
 ### reception
-Django project.
+Django project for reception
 ### reception/read_qr
 App for read/parse QR code
 
