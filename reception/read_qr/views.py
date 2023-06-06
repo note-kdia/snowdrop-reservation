@@ -19,6 +19,8 @@ def video_feed_view():
 def generate_frame():
     capture = cv2.VideoCapture(0)
 
+    qcd = cv2.QRCodeDetector()
+
     while True:
         if not capture.isOpened():
             print("Capture is not opened.")
@@ -28,6 +30,21 @@ def generate_frame():
         if not ret:
             print("Failed to read frame.")
             break
+        # QRコードの読み取り
+        ret_qr, decoded_info, points, _ = qcd.detectAndDecodeMulti(frame)
+        if ret_qr:
+            for s, p in zip(decoded_info, points):
+                if s:
+                    # print(s)
+                    color = (0, 255, 0)
+                else:
+                    color = (0, 0, 255)
+                # 枠を追加
+                frame = cv2.polylines(frame, [p.astype(int)], True, color, 8)
+                # 文字列を追加
+                frame = cv2.putText(frame, s, p[0].astype(int), cv2.FONT_HERSHEY_SIMPLEX,
+                                    1, (0, 0, 255), 2, cv2.LINE_AA)
+
         # フレーム画像をバイナリ変換
         ret, jpeg = cv2.imencode('.jpg', frame)
         byte_frame = jpeg.tobytes()

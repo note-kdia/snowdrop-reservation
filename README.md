@@ -44,3 +44,9 @@ ex. snowdrop3rd:82219:田中太郎:たなかたろう:1
 ## ライブラリ
 参考
 https://qiita.com/PoodleMaster/items/0afbce4be7e442e75be6
+
+### webカメラストリーム
+https://deecode.net/?p=382
+
+### QR読み取り
+https://note.nkmk.me/python-opencv-qrcode/
