@@ -1,0 +1,11 @@
+{% if reservation_list %}
+
+<h3>Reservation List</h3>
+
+{% for reservation in reservation_list %}
+<li><a href="{% url 'reservation_detail' reservation.id %}">{{reservation}}</a></li>
+{% endfor %}
+
+{% else %}
+<p>No Reservation available.</p>
+{% endif %}

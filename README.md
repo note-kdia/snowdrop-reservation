@@ -51,3 +51,8 @@ https://deecode.net/?p=382
 
 ### QR読み取り
 https://note.nkmk.me/python-opencv-qrcode/
+
+# 注意事項
+read_qr/models.py の Reservation.calc_checkin() が入場済人数計算のため毎回走る。
+規模が大きくなると計算リソースを食いつぶすと思うので注意
+変更を検知してアップデートする形式にできたらいい

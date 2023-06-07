@@ -3,6 +3,8 @@ from django.http import StreamingHttpResponse
 from django.shortcuts import render
 from django.views import View
 
+from .models import Reservation
+
 # Create your views here.
 # ストリーミング画像・映像を表示するview
 
@@ -10,6 +12,28 @@ from django.views import View
 class IndexView(View):
     def get(self, request):
         return render(request, "read_qr/index.html", {})
+
+
+def reservation_list(request):
+    res_list = Reservation.objects.all()
+    context = {
+        "reservation_list": res_list,
+    }
+    return render(request, "read_qr/reservation_list.html", context)
+
+
+def reservation_detail(request, reservation_id):
+    try:
+        r = Reservation.objects.get(id=reservation_id)
+        c = r.checkin_set.all()
+        context = {
+            "reservation": r,
+            "checkin_list": c,
+            "checkin_sum": r.calc_checkin(),
+        }
+    except Exception:
+        context = {}
+    return render(request, "read_qr/reservation_detail.html", context)
 
 
 def video_feed_view():

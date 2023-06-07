@@ -1,0 +1,22 @@
+{% if reservation %}
+
+<p><a href="{% url 'reservation_list' %}">Back to reservation list</a></p>
+
+<h3>Reservation Details</h3>
+<p>ID : {{reservation.id}}</p>
+<p>name : {{reservation.name}}</p>
+<p>kana : {{reservation.name_kana}}</p>
+<p>mail : {{reservation.mail}}</p>
+<p>party size : {{reservation.party_size}}</p>
+<p>reserved at : {{reservation.reserved_at}}</p>
+<p>note : {{reservation.notes}}</p>
+
+<h3>Check-in Status</h3>
+<p>{{checkin_sum}} / {{reservation.party_size}}</p>
+{% for checkin in checkin_list %}
+<li>{{checkin.checkin_size}} at {{checkin.checkin_at}}</li>
+{% endfor %}
+
+{% else %}
+<p>No Reservation available.</p>
+{% endif %}
