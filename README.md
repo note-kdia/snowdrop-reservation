@@ -38,13 +38,9 @@ App for read/parse QR code
 ## QRコード
 prefix:id
 
-ex. snowdrop3rd:82219
+ex. snowdrop3rd:8c75a029-b92a-42d3-71e6-d16533191100
 
-または
-
-prefix:id:name:name_kana:number_reserved
-
-ex. snowdrop3rd:82219:田中太郎:たなかたろう:1
+idとしてはuuidを採用
 
 ## ライブラリ
 参考
