@@ -9,7 +9,7 @@ class Reservation(models.Model):
     name_kana = models.CharField(max_length=100)
     mail = models.CharField(max_length=200)
     party_size = models.PositiveSmallIntegerField(default=0)
-    reserved_at = models.DateTimeField("datetime reserved")
+    reserved_at = models.DateTimeField("datetime reserved", auto_now_add=True)
     notes = models.CharField(blank=True, max_length=500)
 
     def __str__(self):
@@ -26,7 +26,7 @@ class Reservation(models.Model):
 class Checkin(models.Model):
     reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE)
     checkin_size = models.PositiveSmallIntegerField(default=0)
-    checkin_at = models.DateTimeField("datetime checkin-ed")
+    checkin_at = models.DateTimeField("datetime checkin-ed", auto_now_add=True)
     notes = models.CharField(blank=True, max_length=500)
 
     def __str__(self):
