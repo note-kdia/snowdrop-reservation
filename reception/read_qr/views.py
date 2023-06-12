@@ -11,7 +11,11 @@ from .models import Reservation
 
 class IndexView(View):
     def get(self, request):
-        return render(request, "read_qr/index.html", {})
+        res_list = Reservation.objects.all()
+        context = {
+            "reservation_list": res_list,
+        }
+        return render(request, "read_qr/index.html", context)
 
 
 def reservation_list(request):
@@ -37,7 +41,7 @@ def reservation_detail(request, reservation_id):
 
 
 def video_feed_view():
-    return lambda _: StreamingHttpResponse(generate_frame(), content_type='multipart/x-mixed-replace; boundary=frame')
+    return lambda _: StreamingHttpResponse(generate_frame(), content_type="multipart/x-mixed-replace; boundary=frame")
 
 
 def generate_frame():
@@ -66,12 +70,12 @@ def generate_frame():
                 # 枠を追加
                 frame = cv2.polylines(frame, [p.astype(int)], True, color, 8)
                 # 文字列を追加
-                frame = cv2.putText(frame, s, p[0].astype(int), cv2.FONT_HERSHEY_SIMPLEX,
-                                    1, (0, 0, 255), 2, cv2.LINE_AA)
+                frame = cv2.putText(
+                    frame, s, p[0].astype(int), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA
+                )
 
         # フレーム画像をバイナリ変換
-        ret, jpeg = cv2.imencode('.jpg', frame)
+        ret, jpeg = cv2.imencode(".jpg", frame)
         byte_frame = jpeg.tobytes()
         # フレーム画像のバイナリデータをユーザに送付する
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + byte_frame + b'\r\n\r\n')
+        yield (b"--frame\r\n" b"Content-Type: image/jpeg\r\n\r\n" + byte_frame + b"\r\n\r\n")
