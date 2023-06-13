@@ -43,6 +43,10 @@ ex. snowdrop3rd:8c75a029-b92a-42d3-71e6-d16533191100
 idとしてはuuidを採用
 
 ## ライブラリ
+jsQR - github
+Javascript QR code reading library.
+https://github.com/cozmo/jsQR
+
 参考
 https://qiita.com/PoodleMaster/items/0afbce4be7e442e75be6
 
