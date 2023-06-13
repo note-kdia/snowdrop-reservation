@@ -43,11 +43,25 @@ ex. snowdrop3rd:8c75a029-b92a-42d3-71e6-d16533191100
 idとしてはuuidを採用
 
 ## ライブラリ
-jsQR - github
-Javascript QR code reading library.
+### jsQR
 https://github.com/cozmo/jsQR
 
-参考
+Javascript QR code reading library.
+
+### qr-scanner
+https://github.com/nimiq/qr-scanner
+
+QR scanner that uses browser's native BarcodeDetector
+
+### barcode-detector-polyfill
+https://www.npmjs.com/package/@undecaf/barcode-detector-polyfill?activeTab=readme
+
+Barcode Detection API for Browsers.
+Based on zbar-wasm, but this is more standarlized and provides higher-level API.
+
+zbar-wasm のデモがかなりいい感じだった（動作が軽快でちらつきもない）ためこれ採用かも
+
+### 参考
 https://qiita.com/PoodleMaster/items/0afbce4be7e442e75be6
 
 ### webカメラストリーム
