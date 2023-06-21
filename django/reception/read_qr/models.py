@@ -13,9 +13,9 @@ class Reservation(models.Model):
     notes = models.CharField(blank=True, max_length=500)
 
     def __str__(self):
-        return self.name + " (" + str(self.calc_checkin()) + "/" + str(self.party_size) + ")"
+        return self.name + " (" + str(self.checkin_sum()) + "/" + str(self.party_size) + ")"
 
-    def calc_checkin(self):
+    def checkin_sum(self):
         sum = 0
         checkin_list = self.checkin_set.all()
         for checkin in checkin_list:

@@ -2,8 +2,22 @@ import cv2
 from django.http import StreamingHttpResponse
 from django.shortcuts import render
 from django.views import View
+from rest_framework import viewsets
+from .serializers import ReservationSerializer, CheckinSerializer
 
-from .models import Reservation
+from .models import Reservation, Checkin
+
+
+# Django REST Framework
+class ReservationViewSet(viewsets.ModelViewSet):
+    queryset = Reservation.objects.all()
+    serializer_class = ReservationSerializer
+
+
+class CheckinViewSet(viewsets.ModelViewSet):
+    queryset = Checkin.objects.all()
+    serializer_class = CheckinSerializer
+
 
 # Create your views here.
 # ストリーミング画像・映像を表示するview
