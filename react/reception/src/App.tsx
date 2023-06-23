@@ -1,6 +1,4 @@
-import { Alert, AlertTitle, Box, Button, ButtonGroup, Card, CssBaseline, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
+import { Alert, AlertTitle, Box, Button, ButtonGroup, Card, CssBaseline, Grow, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { useState } from 'react';
 import { useZxing } from 'react-zxing';
 import './App.css';
@@ -63,19 +61,26 @@ export default function Index() {
   });
 
   function IsQrValidAlert() {
+    const valid_qr_alert = (
+      <Alert severity="success">
+        <AlertTitle>Valid QR</AlertTitle>
+        {qrResult}
+      </Alert>
+    )
+    const invalid_qr_alert = (
+      <Alert severity="warning">
+        <AlertTitle>Invalid QR or ID</AlertTitle>
+        {qrResult}
+      </Alert>
+    )
+
     if (isQrValid) {
       return (
-        <Alert severity="success">
-          <AlertTitle>Valid QR</AlertTitle>
-          {qrResult}
-        </Alert>
+        <Grow in={true}>{valid_qr_alert}</Grow>
       )
     } else {
       return (
-        <Alert severity="warning">
-          <AlertTitle>Invalid QR or ID</AlertTitle>
-          {qrResult}
-        </Alert>
+        <Grow in={true}>{invalid_qr_alert}</Grow>
       )
     }
   }
@@ -94,6 +99,19 @@ export default function Index() {
     } else {
       return <></>
     }
+  }
+
+  const ReservationCheckinButtons = ({ size }: { size: number }) => {
+    const values: { value: number }[] = [
+      { value: 1 },
+      { value: 2 },
+    ]
+    return (
+      <ButtonGroup variant="outlined" aria-label='outlined button group'>
+        <Button>{values[0].value}</Button>
+        <Button>{values[1].value}</Button>
+      </ButtonGroup>
+    )
   }
 
   function ReservationDetailComponent() {
@@ -141,11 +159,7 @@ export default function Index() {
             </TableBody>
           </Table>
         </TableContainer>
-        <ButtonGroup>
-          <Button>One</Button>
-          <Button>Two</Button>
-          <Button>Three</Button>
-        </ButtonGroup>
+        <ReservationCheckinButtons size={3} />
       </>
     )
   }
